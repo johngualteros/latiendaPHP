@@ -48,6 +48,7 @@ Route::get('arreglo',function(){
 Route::get('paises',function(){
     $paises=[
     "Colombia"=>[
+        "imagen"=>"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAASwAAACoCAMAAABt9SM9AAAAPFBMVEX81wAAN4fLBhSkjAH/3ADPBhSEBAz/3wAAIY0AOYvSAAABIleHBAx0YgOojwGrkQD/5AAAEluJAABdBAgl0lkcAAABhklEQVR4nO3Q2VVCURRAsatMIo+5/15lWcHZ/0kJWdfbjpHbdd1Oe0ZOt7XbL0b2O1ljsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICj5Z98eJkcd9PX8Yeq7L+YuR80XWmKxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQF/1kMXdbrl6HXOh6+GTkcZY3JCmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgaxAViArkBXICmQFsgJZgazgk7UdGNrWezsysr3/AKA11CmMDT1rAAAAAElFTkSuQmCC",
         "capital"=>"Bogotá",
         "moneda"=>"Peso",
         "poblacion"=>"50,88 millones",
@@ -58,6 +59,7 @@ Route::get('paises',function(){
         ]
     ],
     "Japon"=>[
+        "imagen"=>"https://s1.significados.com/foto/bandera-japon_sm.png",
         "capital"=>"tokyo",
         "moneda"=>"yen",
         "poblacion"=>"125.8 millones",
@@ -69,6 +71,7 @@ Route::get('paises',function(){
 
     ],
     "Peru"=>[
+          "imagen"=>"https://upload.wikimedia.org/wikipedia/commons/thumb/1/15/Flag_of_Peru_%281825%E2%80%931884%29.svg/270px-Flag_of_Peru_%281825%E2%80%931884%29.svg.png",
         "capital"=>"lima",
         "moneda"=>"sol",
         "poblacion"=>"32.97 millones",
@@ -80,6 +83,7 @@ Route::get('paises',function(){
 
     ],
     "Argentina"=>[
+          "imagen"=>"https://www.protocolo.org/extfiles/i-8154-cG.22202.1.jpg",
         "capital"=>"buenos aires",
         "moneda"=>"peso",
         "poblacion"=>"45,38 millones",
@@ -91,6 +95,7 @@ Route::get('paises',function(){
 
     ],
     "Paraguay"=>[
+          "imagen"=>"https://www.ngenespanol.com/wp-content/uploads/2018/08/%C2%BFSabes-por-qu%C3%A9-la-bandera-de-Paraguay-es-%C3%BAnica-en-Am%C3%A9rica-1280x720.jpg",
         "capital"=>"asuncion",
         "moneda"=>"guarani",
         "poblacion"=>"7.1 millones",
