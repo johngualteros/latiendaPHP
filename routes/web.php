@@ -123,3 +123,7 @@ Route::get('paises',function(){
     // }
     return view('paises')->with("paises", $paises);
 });
+Route::get('new',function(){
+    return view('products/new');
+});
+?>
