@@ -1,7 +1,8 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
-use PhpParser\Node\Stmt\Echo_;
+// use PhpParser\Node\Stmt\Echo_;
+use App\Http\Controllers\ProductoController;
 
 /*
 |--------------------------------------------------------------------------
@@ -126,4 +127,6 @@ Route::get('paises',function(){
 Route::get('new',function(){
     return view('products/new');
 });
+// Create routes rest
+Route::resource('productos', ProductoController::class);('')
 ?>
