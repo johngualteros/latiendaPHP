@@ -26,6 +26,7 @@ class ProductoController extends Controller
      */
     public function create()
     {
+        // Seleccionar marcas y categorias desde la db
         $marcas=Marca::all();
         $categorias=Categoria::all();
         return view('products.new')->with("marcas",$marcas)->with("categorias",$categorias);
@@ -39,7 +40,30 @@ class ProductoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // echo "<pre>";
+        // var_dump($request->nombre);
+        // var_dump($request->descripcion);
+        // var_dump($request->precio);
+        // var_dump($request->imagen);
+        // echo "</pre>";
+
+        //Crear el objeto uploadedFile
+
+        $archivo=$request->imagen;
+        $nombre_archivo=$archivo->getClientOriginalName();
+        // Mover el arvhivo a la carpeta public
+        $ruta=public_path();
+        var_dump($ruta);
+        $archivo->move("$ruta/img/",$nombre_archivo);
+        // Registrar producto
+        $producto=new Producto();
+        $producto->nombre=$request->nombre;
+        $producto->descripcion=$request->descripcion;
+        $producto->precio=$request->precio;
+        $producto->imagen=$nombre_archivo;
+        $producto->marca_id=$request->marca;
+        $producto->categoria_id=$request->categoria;
+        $producto->save();
     }
 
     /**
