@@ -126,7 +126,10 @@ Route::get('paises',function(){
 });
 Route::get('new',function(){
     return view('products/new');
-});
+ });
+// Route::get('productos/list',function(){
+//     echo "Aqui van los productos";
+// });
 // Create routes rest
 Route::resource('productos', ProductoController::class);('')
 ?>

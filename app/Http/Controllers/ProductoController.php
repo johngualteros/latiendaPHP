@@ -5,18 +5,20 @@ namespace App\Http\Controllers;
 use App\Models\Producto;
 use App\Models\Categoria;
 use App\Models\Marca;
+use Illuminate\Contracts\View\View;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ProductoController extends Controller
 {
     /**
      * Display a listing of the resource.
-     *
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        return 'hola';
+    {   
+        $productos=Producto::all();
+        return view('products/listProductos')->with("productos",$productos);
     }
 
     /**
@@ -49,21 +51,51 @@ class ProductoController extends Controller
 
         //Crear el objeto uploadedFile
 
-        $archivo=$request->imagen;
-        $nombre_archivo=$archivo->getClientOriginalName();
-        // Mover el arvhivo a la carpeta public
-        $ruta=public_path();
-        var_dump($ruta);
-        $archivo->move("$ruta/img/",$nombre_archivo);
-        // Registrar producto
-        $producto=new Producto();
-        $producto->nombre=$request->nombre;
-        $producto->descripcion=$request->descripcion;
-        $producto->precio=$request->precio;
-        $producto->imagen=$nombre_archivo;
-        $producto->marca_id=$request->marca;
-        $producto->categoria_id=$request->categoria;
-        $producto->save();
+
+        // Validations
+        // 1-Establecer reglas de validacion a aplicar
+        // para la 'input data'
+
+        $reglas=[
+            "nombre"=>'required|alpha|unique:productos,nombre',
+            "descripcion"=>'required|min:10|max:100',
+            "precio"=>'required|numeric',
+            "imagen"=>'required|image',
+            "marca"=>'required',
+            "categoria"=>'required',
+        ];
+        // 2 objeto validador        
+        $v=Validator::make($request->all(),$reglas,$message=[
+            'required' => 'el campo :attribute es requerido',
+            'min' => 'El campo debe tener un minimo de :min caracteres',
+            'max' => 'El campo debe tener un maximo de :max caracteres',
+            'numeric' => 'El campo solo debe tener numeros',
+            'image' => 'El campo debe tener una imagen',
+            'unique' =>'El campo ya tiene un registro en la base de datos'
+        ]);
+        // 3 Validar
+        // fails return si la validacion falla y un false si no
+        if($v->fails()){
+            // Mostrar la vista new pero llevando los errores
+            return redirect('productos/create')->withErrors($v);
+        }else{
+            $archivo=$request->imagen;
+            $nombre_archivo=$archivo->getClientOriginalName();
+            // Mover el arvhivo a la carpeta public
+            $ruta=public_path();
+            var_dump($ruta);
+            $archivo->move("$ruta/img/",$nombre_archivo);
+            // Registrar producto
+            $producto=new Producto();
+            $producto->nombre=$request->nombre;
+            $producto->descripcion=$request->descripcion;
+            $producto->precio=$request->precio;
+            $producto->imagen=$nombre_archivo;
+            $producto->marca_id=$request->marca;
+            $producto->categoria_id=$request->categoria;
+            $producto->save();
+            return redirect('/productos');
+        }
     }
 
     /**
