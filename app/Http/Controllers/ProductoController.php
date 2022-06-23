@@ -53,10 +53,10 @@ class ProductoController extends Controller
 
 
         // Validations
-        // 1-Establecer reglas de validacion a aplicar
+        // 1-Establecer rugles de validacion a aplicar
         // para la 'input data'
 
-        $reglas=[
+        $rugles=[
             "nombre"=>'required|alpha|unique:productos,nombre',
             "descripcion"=>'required|min:10|max:100',
             "precio"=>'required|numeric',
@@ -65,7 +65,7 @@ class ProductoController extends Controller
             "categoria"=>'required',
         ];
         // 2 objeto validador        
-        $v=Validator::make($request->all(),$reglas,$message=[
+        $v=Validator::make($request->all(),$rugles,$message=[
             'required' => 'el campo :attribute es requerido',
             'min' => 'El campo debe tener un minimo de :min caracteres',
             'max' => 'El campo debe tener un maximo de :max caracteres',
